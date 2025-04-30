@@ -12,6 +12,7 @@
     img.logo { width: 300px; height: 300px; }
     a { color: inherit; text-decoration: underline; }
     h1 { color: #208633}
+    b { color:#14531f }
   </style>
   <script>
     function showLanguage(lang) {
@@ -22,9 +23,25 @@
     window.addEventListener('DOMContentLoaded', function() {
       showLanguage('en');
     });
+
+  fetch('https://pear.cat/xrpc/_health')
+  .then(r => r.ok ? 'is up' : Promise.reject())
+  .catch(() => 'is down')
+  .then(s => document.querySelector('#pear-cat-status-en').textContent = s);
+
+  fetch('https://pear.cat/xrpc/_health')
+  .then(r => r.ok ? 'està a punt' : Promise.reject())
+  .catch(() => 'és propi')
+  .then(s => document.querySelector('#pear-cat-status-ca').textContent = s);
+
+  fetch('https://pear.cat/xrpc/_health')
+  .then(r => r.ok ? 'est actif' : Promise.reject())
+  .catch(() => 'est hors ligne')
+  .then(s => document.querySelector('#pear-cat-status-fr').textContent = s);
   </script>
 </head>
 <body>
+  
   <div id="lang-selector">
     <img src="flags/englishflag.png" alt="English" onclick="showLanguage('en')">
     <img src="flags/catalanflag.png" alt="Català" onclick="showLanguage('ca')">
@@ -35,6 +52,9 @@
     <center>
       <img class="logo" src="pearcatlogofull.png" alt="Pear Cat Logo"/>
       <h1>Welcome to pear.cat</h1>
+      <b>
+        pear.cat <span id="pear-cat-status-en"></span>
+      </b>
       <p>
         This is an AT Protocol Personal Data Server (aka, an atproto PDS)<br>
         Most API routes are under /xrpc/<br>
@@ -49,6 +69,9 @@
     <center>
       <img class="logo" src="pearcatlogofull.png" alt="Pear Cat Logo"/>
       <h1>Benvingut a pear.cat</h1>
+      <b>
+        pear.cat <span id="pear-cat-status-ca"></span>
+      </b>
       <p>
         Aquest és un servidor de dades personals del protocol AT (també conegut com un PDS atproto)<br>
         La majoria de les rutes de l'API es troben a /xrpc/<br>
@@ -63,6 +86,9 @@
     <center>
       <img class="logo" src="pearcatlogofull.png" alt="Pear Cat Logo"/>
       <h1>Bienvenue sur pear.cat</h1>
+      <b>
+        pear.cat <span id="pear-cat-status-fr"></span>
+      </b>
       <p>
         Ceci est un serveur de données personnelles du protocole AT (aussi connu en tant que PDS atproto)<br>
         La majorité des routes de l'API sont sous /xrpc/<br>
