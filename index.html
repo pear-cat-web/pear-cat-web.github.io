@@ -1,53 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>pear.cat</title>
-<style>
-p { 
-  font-family: Arial;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>pear.cat</title>
+  <style>
+    body { background-color: #C8FFC8; margin: 0; font-family: Arial, sans-serif; }
+    #lang-selector { position: absolute; top: 10px; right: 10px; background: #fff; padding: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    #lang-selector img { cursor: pointer; width: 24px; height: 14px; margin: 0 4px; }
+    .lang { display: none; text-align: center; padding: 20px; }
+    .lang.active { display: block; }
+    img.logo { opacity: 0.7; width: 300px; height: 300px; }
+    a { color: inherit; text-decoration: underline; }
+  </style>
+  <script>
+    function showLanguage(lang) {
+      document.querySelectorAll('.lang').forEach(function(el) {
+        el.classList.toggle('active', el.dataset.lang === lang);
+      });
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      showLanguage('en');
+    });
+  </script>
 </head>
-<body style="background-color:#C8FFC8;">
-<center>
-<img src="pearcatlogofull.png"
-  width="300"
-  height="300"/>
+<body>
+  <div id="lang-selector">
+    <img src="flags/englishflag.png" alt="English" onclick="showLanguage('en')">
+    <img src="flags/catalanflag.png" alt="Català" onclick="showLanguage('ca')">
+    <img src="flags/frenchflag.png" alt="Français" onclick="showLanguage('fr')">
+  </div>
 
-<br><br>
+  <div class="lang" data-lang="en">
+    <center>
+      <img class="logo" src="pearcatlogofull.png" alt="Pear Cat Logo"/>
+      <p>
+        This is an AT Protocol Personal Data Server (aka, an atproto PDS)<br>
+        Most API routes are under /xrpc/<br>
+        Code: <a href="https://github.com/bluesky-social/atproto">github.com/bluesky-social/atproto</a><br>
+        Self-Host: <a href="https://github.com/bluesky-social/pds">github.com/bluesky-social/pds</a><br>
+        Protocol: <a href="https://atproto.com">atproto.com</a>
+      </p>
+    </center>
+  </div>
 
-<p>
-This is an AT Protocol Personal Data Server (aka, an atproto PDS)
-<br>
-Most API routes are under /xrpc/
-<br>
-Code: https://github.com/bluesky-social/atproto
-<br>
-Self-Host: https://github.com/bluesky-social/pds
-<br>
-Protocol: https://atproto.com
+  <div class="lang" data-lang="ca">
+    <center>
+      <img class="logo" src="pearcatlogofull.png" alt="Pear Cat Logo"/>
+      <p>
+        Aquest és un servidor de dades personals del protocol AT (també conegut com un PDS atproto)<br>
+        La majoria de les rutes de l'API es troben a /xrpc/<br>
+        Codi: <a href="https://github.com/bluesky-social/atproto">github.com/bluesky-social/atproto</a><br>
+        Autònom: <a href="https://github.com/bluesky-social/pds">github.com/bluesky-social/pds</a><br>
+        Protocol: <a href="https://atproto.com">atproto.com</a>
+      </p>
+    </center>
+  </div>
 
-<br><br>
-
-Aquest és un servidor de dades personals del protocol AT (també conegut com un PDS atproto)
-<br>
-La majoria de les rutes de l'API es troben a /xrpc/
-<br>
-Codi: https://github.com/bluesky-social/atproto
-<br>
-Autònom: https://github.com/bluesky-social/pds
-<br>
-Protocol: https://atproto.com
-
-<br><br>
-
-Ceci est un serveur de données personnelles du protocole AT (aussi connu en tant que PDS atproto)
-<br>
-La majoritée des routes de l'API sont sous /xrpc/
-<br>
-Code: https://github.com/bluesky-social/atproto
-<br>
-Héberger chez-soi: https://github.com/bluesky-social/pds
-<br>
-Protocole: https://atproto.com
-</p>
-</center>
+  <div class="lang" data-lang="fr">
+    <center>
+      <img class="logo" src="pearcatlogofull.png" alt="Pear Cat Logo"/>
+      <p>
+        Ceci est un serveur de données personnelles du protocole AT (aussi connu en tant que PDS atproto)<br>
+        La majorité des routes de l'API sont sous /xrpc/<br>
+        Code: <a href="https://github.com/bluesky-social/atproto">github.com/bluesky-social/atproto</a><br>
+        Héberger chez-soi: <a href="https://github.com/bluesky-social/pds">github.com/bluesky-social/pds</a><br>
+        Protocole: <a href="https://atproto.com">atproto.com</a>
+      </p>
+    </center>
+  </div>
 </body>
+</html>
