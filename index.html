@@ -32,20 +32,39 @@
       showLanguage('en');
     });
 
-  fetch('https://pear.cat/xrpc/_health')
-  .then(r => r.ok ? 'is up' : Promise.reject())
-  .catch(() => 'is down')
-  .then(s => document.querySelector('#pear-cat-status-en').textContent = s);
+  const logos = {
+    up:   'pearcatlogoanimated.png',
+    down: 'pearcatlogodown.png',
+  };
 
-  fetch('https://pear.cat/xrpc/_health')
-  .then(r => r.ok ? 'està a punt' : Promise.reject())
-  .catch(() => 'és propi')
-  .then(s => document.querySelector('#pear-cat-status-ca').textContent = s);
+const url = 'https://pear.cat/xrpc/_health';
+const messages = {
+  en: { up: 'is up',    down: 'is down' },
+  ca: { up: 'està a punt', down: 'és propi' },
+  fr: { up: 'est actif',   down: 'est hors ligne' },
+  nl: { up: 'is actief',   down: 'is down' },
+};
 
-  fetch('https://pear.cat/xrpc/_health')
-  .then(r => r.ok ? 'est actif' : Promise.reject())
-  .catch(() => 'est hors ligne')
-  .then(s => document.querySelector('#pear-cat-status-fr').textContent = s);
+fetch(url)
+  .then(r => r.ok)
+  .catch(() => false)
+  .then(isUp => {
+    const state = isUp ? 'up' : 'down';
+
+    // Lang logo change
+    document.querySelectorAll('.lang').forEach(langDiv => {
+      const logo = langDiv.querySelector('.logo');
+      if (logo) logo.src = logos[state];
+    });
+
+    // Why are you reading this
+    for (const [lang, msgs] of Object.entries(messages)) {
+      const el = document.querySelector(`#pear-cat-status-${lang}`);
+      if (el) el.textContent = msgs[state];
+    }
+  });
+
+
   </script>
 </head>
 <body>
@@ -54,6 +73,7 @@
     <img src="flags/englishflag.png" alt="English" onclick="showLanguage('en')">
     <img src="flags/catalanflag.png" alt="Català" onclick="showLanguage('ca')">
     <img src="flags/frenchflag.png" alt="Français" onclick="showLanguage('fr')">
+    <img src="flags/netherlandsflag.png" alt="Français" onclick="showLanguage('nl')">
   </div>
 
   <div class="lang" data-lang="en">
@@ -104,7 +124,23 @@
         Héberger chez-soi: <a href="https://github.com/bluesky-social/pds">github.com/bluesky-social/pds</a><br>
         Protocole: <a href="https://atproto.com">atproto.com</a>
       </p>
-    </center>
   </div>
+
+  <div class="lang" data-lang="nl">
+    <center>
+      <img class="logo" src="pearcatlogoanimated.png" alt="Pear Cat Logo"/>
+      <h1>Welkom bij pear.cat</h1>
+      <b>
+        pear.cat <span id="pear-cat-status-nl"></span>
+      </b>
+      <p>
+        Dit is een AT Protocol Personal Data Server (ook wel een atproto PDS genoemd)<br>
+        De meeste API-routes bevinden zich onder /xrpc/<br>
+        Code: <a href="https://github.com/bluesky-social/atproto">github.com/bluesky-social/atproto</a><br>
+        Zelfhosting: <a href="https://github.com/bluesky-social/pds">github.com/bluesky-social/pds</a><br>
+        Protocol: <a href="https://atproto.com">atproto.com</a>
+      </p>
+  </div>
+</center>
 </body>
 </html>
