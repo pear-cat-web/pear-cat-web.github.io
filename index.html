@@ -20,7 +20,8 @@
     img.logo { width: 300px; height: 300px; }
     a { color: inherit; text-decoration: underline; }
     h1 { color: #203b86 }
-    b { color:#14531f }
+    h3 { color:#14531f }
+    .footnotestatus { color: #203b86}
   </style>
   <script>
     function showLanguage(lang) {
@@ -64,6 +65,21 @@ fetch(url)
     }
   });
 
+  fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Cannot get PDS status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const versionEl = document.getElementById('version');
+        versionEl.textContent = data.version ?? 'N/A';
+      })
+      .catch(err => {
+        console.error('Fetch error:', err);
+        document.getElementById('version').textContent = 'error';
+      });
 
   </script>
 </head>
@@ -80,9 +96,9 @@ fetch(url)
     <center>
       <img class="logo" src="pearcatlogoanimated.png" alt="Pear Cat Logo"/>
       <h1>Welcome to pear.cat</h1>
-      <b>
+      <h3>
         pear.cat <span id="pear-cat-status-en"></span>
-      </b>
+      </h3>
       <p>
         This is an AT Protocol Personal Data Server (aka, an atproto PDS)<br>
         Most API routes are under /xrpc/<br>
@@ -141,6 +157,13 @@ fetch(url)
         Protocol: <a href="https://atproto.com">atproto.com</a>
       </p>
   </div>
+</center>
+<center>
+  <h3>
+    <a class="footnotestatus" href="https://pear.cat/xrpc/_health">
+      PDS version: <span id="version">...</span>
+    </a>
+  </h3>
 </center>
 </body>
 </html>
