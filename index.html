@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
   <style>
     body { background-color: #000000; margin: 0; font-family: "Jersey 10", sans-serif; }
-    #lang-selector { position: absolute; top: 10px; right: 10px; background: #fff; padding: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    #lang-selector { position: absolute; top: 10px; right: 10px; background: #fff; padding: 5px; }
     #lang-selector img { cursor: pointer; width: 24px; height: 14px; margin: 0 4px; }
     .lang { display: none; text-align: center; padding: 20px; }
     .lang.active { display: block; }
@@ -22,7 +22,8 @@
     h1 { color: #688cf0 }
     h2 { color:#688cf0 }
     h3 { color:#14531f }
-    .footnotestatus { color: #688cf0}
+    .footnotestatus { color: #688cf0 }
+    .button { background-color: #208633; border: none; color: #ffffff; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 20px; margin: 4px 2px; cursor: pointer; }
   </style>
   <script>
     function showLanguage(lang) {
@@ -96,6 +97,8 @@ fetch(url)
   <div class="lang" data-lang="en">
     <center>
       <img class="logo" src="" alt="pear.cat Logo"/>
+      <br>
+      <a href="https://pear.cat/account" class="button">Manage your account</a>
       <h1>Welcome to pear.cat</h1>
       <h2>Your account in the Atmosphere</h2>
       <h3>
@@ -114,6 +117,8 @@ fetch(url)
   <div class="lang" data-lang="ca">
     <center>
       <img class="logo" src="" alt="pear.cat Logo"/>
+      <br>
+      <a href="https://pear.cat/account" class="button">Gestiona el teu compte</a>
       <h1>Benvingut a pear.cat</h1>
       <h2>El teu compte a l'Atmosphere</h2>
       <h3>
@@ -132,6 +137,8 @@ fetch(url)
   <div class="lang" data-lang="fr">
     <center>
       <img class="logo" src="" alt="pear.cat Logo"/>
+      <br>
+      <a href="https://pear.cat/account" class="button">Gérer votre compte</a>
       <h1>Bienvenue sur pear.cat</h1>
       <h2>Votre compte dans l'Atmosphere</h2>
       <h3>
@@ -149,6 +156,8 @@ fetch(url)
   <div class="lang" data-lang="nl">
     <center>
       <img class="logo" src="" alt="pear.cat Logo"/>
+      <br>
+      <a href="https://pear.cat/account" class="button">Beheer uw account</a>
       <h1>Welkom bij pear.cat</h1>
       <h2>Uw account in de Atmosphere</h2>
       <h3>
